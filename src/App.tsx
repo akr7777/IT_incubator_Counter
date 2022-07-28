@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import logo from './logo.svg';
 import s from './App.module.css';
 import {Counter} from "./components/Counter/Counter";
@@ -18,12 +18,16 @@ function App() {
 
     //local storage inicialization
     let myLocalStorage = window.localStorage;
-    /*if (myLocalStorage.getItem(LOCAL_STORAGE_MIN)) {
-        setMinValue( Number(myLocalStorage.getItem(LOCAL_STORAGE_MIN)) );
+    function storageInitialization() {
+        if ( myLocalStorage.getItem(LOCAL_STORAGE_MIN) && myLocalStorage.getItem(LOCAL_STORAGE_MAX) ) {
+            if (minValue !== Number(myLocalStorage.getItem(LOCAL_STORAGE_MIN))
+                && maxValue !== Number(myLocalStorage.getItem(LOCAL_STORAGE_MAX))) {
+                setMinValue( Number(myLocalStorage.getItem(LOCAL_STORAGE_MIN)) );
+                setMaxValue( Number(myLocalStorage.getItem(LOCAL_STORAGE_MAX)) );
+            }
+        }
     }
-    if (myLocalStorage.getItem(LOCAL_STORAGE_MAX)) {
-        setMaxValue( Number(myLocalStorage.getItem(LOCAL_STORAGE_MAX)) );
-    }*/
+    storageInitialization();
 
     function changePanels() {
         setShowSettings(!showSettings);
@@ -34,8 +38,8 @@ function App() {
         setMinValue(min);
         setMaxValue(max);
         //Puching data to the localStorage:
-        /*myLocalStorage.setItem(LOCAL_STORAGE_MIN, String(min))
-        myLocalStorage.setItem(LOCAL_STORAGE_MAX, String(max))*/
+        myLocalStorage.setItem(LOCAL_STORAGE_MIN, String(min))
+        myLocalStorage.setItem(LOCAL_STORAGE_MAX, String(max))
     }
 
     debugger
