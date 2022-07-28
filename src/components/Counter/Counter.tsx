@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import s from "./Counter.module.css";
 import {Monitor} from "../Monitor/Monitor";
 import Button from "../Primitive/Button";
@@ -21,6 +21,8 @@ export const Counter = ({isSettingsAvalable, minValue, maxValue, showSettings}: 
     const resetCount = (): void => {
         setCount(minValue);
     }
+
+    useEffect(() => setCount(minValue))
 
     return (
         <div className={s.counter_wrapping}>
