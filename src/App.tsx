@@ -1,26 +1,97 @@
-import React from 'react';
+import React, {useState} from 'react';
 import logo from './logo.svg';
-import './App.css';
+import s from './App.module.css';
+import {Counter} from "./components/Counter/Counter";
+import SettingsPanel from "./components/SettingsPanel/SettingsPanel";
+
+/*const SHOW_COUNTER = 'APP/SHOW_COUNTER';
+const SHOW_SETTINGS = 'APP/SHOW_SETTINGS';*/
+const INITIAL_MIN_VALUE = 0;
+const INITIAL_MAX_VALUE = 5;
+const LOCAL_STORAGE_MIN = 'CounterAPP_localStorageMin';
+const LOCAL_STORAGE_MAX = 'CounterAPP_localStorageMax';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [minValue, setMinValue] = useState<number>(INITIAL_MIN_VALUE);
+    const [maxValue, setMaxValue] = useState<number>(INITIAL_MAX_VALUE);
+    const [showSettings, setShowSettings] = useState<boolean>(false);
+
+    //local storage inicialization
+    let myLocalStorage = window.localStorage;
+    /*if (myLocalStorage.getItem(LOCAL_STORAGE_MIN)) {
+        setMinValue( Number(myLocalStorage.getItem(LOCAL_STORAGE_MIN)) );
+    }
+    if (myLocalStorage.getItem(LOCAL_STORAGE_MAX)) {
+        setMaxValue( Number(myLocalStorage.getItem(LOCAL_STORAGE_MAX)) );
+    }*/
+
+    function changePanels() {
+        setShowSettings(!showSettings);
+    }
+
+    function setNewSettings(min:number, max:number) {
+        alert('new setings to do! min='+String(min)+'; max='+String(max))
+        setMinValue(min);
+        setMaxValue(max);
+        //Puching data to the localStorage:
+        /*myLocalStorage.setItem(LOCAL_STORAGE_MIN, String(min))
+        myLocalStorage.setItem(LOCAL_STORAGE_MAX, String(max))*/
+    }
+
+    debugger
+    return (
+        <div className={s.App}>
+            <div>
+                <h3 className={s.titleLabel}>Simple counter:</h3>
+                <Counter
+                    isSettingsAvalable={false}
+                    minValue={minValue}
+                    maxValue={maxValue}
+                    showSettings={changePanels}
+                />
+            </div>
+
+            <div>
+                <h3 className={s.titleLabel}>Counter and Setting separatly:</h3>
+                <div className={s.counter_settings_sep_div}>
+                    <Counter
+                        isSettingsAvalable={false}
+                        minValue={minValue}
+                        maxValue={maxValue}
+                        showSettings={changePanels}
+                    />
+                    <SettingsPanel
+                        minValue={minValue}
+                        maxValue={maxValue}
+                        setNewSettings={(min:number, max: number) => setNewSettings(min,max)}
+                        isCounterButtonAvailable={false}
+                        showCounterPanel={changePanels}
+                    />
+                </div>
+            </div>
+
+            <div>
+                <h3 className={s.titleLabel}>Counter and Setting both in one:</h3>
+                {
+                    showSettings
+                        ? <SettingsPanel
+                            minValue={minValue}
+                            maxValue={maxValue}
+                            setNewSettings={(min:number, max: number) => setNewSettings(min,max)}
+                            isCounterButtonAvailable={true}
+                            showCounterPanel={changePanels}
+                        />
+                        : <Counter
+                            isSettingsAvalable={true}
+                            minValue={minValue}
+                            maxValue={maxValue}
+                            showSettings={changePanels}
+                        />
+                }
+            </div>
+
+        </div>
+    );
 }
 
 export default App;

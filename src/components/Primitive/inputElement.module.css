@@ -1,0 +1,24 @@
+.input_css {
+    width: 150px;
+    height: 30px;
+    background-color: #a5cad3;
+
+    font-weight: bold;
+    font-size: 20px;
+    font-family: "Comic Sans MS";
+}
+
+.input_css_error {
+    width: 150px;
+    height: 30px;
+    background-color: indianred;
+
+    font-weight: bold;
+    font-size: 20px;
+    font-family: "Comic Sans MS";
+}
+
+.error_label {
+    color: red;
+    font-size: 18px;
+ }

@@ -1,19 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
+import ReactDOM from 'react-dom'
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import './index.css'
+import {Counter} from "./components/Counter/Counter";
+/*
+const Son = (props: any) => {
+    return <div>
+        I am son. My name is {props.name}
+    </div>
+}
+const Father = (props: any) => {
+    return <div>
+        I am father. My name is {props.name}
+        <Son name={props.sonName} />
+    </div>
+}
+const Granny = (props: any) => {
+    return <div>
+        I am granny. My name is {props.name}
+        <Father name={props.fatherName} sonName={props.sonName} />
+    </div>
+}*/
+export const App1 = () => {
+    return <div>
+        <App />
+        {/*<Counter isSetAvalable={false}/>*/}
+    </div>
+}
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+ReactDOM.render(<App1/>,
+    document.getElementById('root')
+)

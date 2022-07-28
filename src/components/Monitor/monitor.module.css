@@ -1,0 +1,12 @@
+.display_monitor {
+    font-size: 60px;
+    color: sienna;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.display_monitor_maxValue {
+    font-size: 60px;
+    color: black;
+    margin-top: auto;
+    margin-bottom: auto;
+}
