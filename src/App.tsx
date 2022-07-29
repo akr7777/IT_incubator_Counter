@@ -34,7 +34,6 @@ function App() {
     }
 
     function setNewSettings(min:number, max:number) {
-        alert('new setings to do! min='+String(min)+'; max='+String(max))
         setMinValue(min);
         setMaxValue(max);
         //Puching data to the localStorage:

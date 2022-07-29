@@ -35,7 +35,6 @@ const SettingsPanel = (props: SettingsPanelPropsType) => {
         return /^-?\d+$/.test(value);
     }
     function _checkError(min: string, max: string) {
-        //debugger
         if (!_isNumeric(min)) {
             setError(true);
             setErrorMessage({...errorMessage, minValueNotNumber: 'Not a number'});
@@ -78,12 +77,10 @@ const SettingsPanel = (props: SettingsPanelPropsType) => {
     const inputOnChangeHandler = (id: string, value: string) => {
         if (id === id_min) {
             _checkError(value, maxValue);
-            //if (!error) setMinValue(value);
             setMinValue(value);
         }
         if (id === id_max) {
             _checkError(minValue, value);
-            //if (!error) setMaxValue(value);
             setMaxValue(value);
         }
     }
