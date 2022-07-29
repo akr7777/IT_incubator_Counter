@@ -22,7 +22,12 @@ export const Counter = ({isSettingsAvalable, minValue, maxValue, showSettings}: 
         setCount(minValue);
     }
 
-    useEffect(() => setCount(minValue))
+    useEffect( () => {
+        setCount(minValue)
+       /* return () => {
+            //componentWillUnmount
+       }*/
+    }, [minValue])
 
     return (
         <div className={s.counter_wrapping}>

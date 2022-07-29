@@ -119,7 +119,10 @@ const SettingsPanel = (props: SettingsPanelPropsType) => {
                 {/*      /error label        */}
             </div>
             <div className={s.settings_btn_divs}>
-                <Button title='SET' onClickHandler={setOnClickHandler} isDisabled={error}/>
+                <Button
+                    title='SET'
+                    onClickHandler={setOnClickHandler}
+                    isDisabled={error || (Number(minValue)===props.minValue && Number(maxValue)===props.maxValue)}/>
                 <Button title='RESET' onClickHandler={resetOnClickHandler}/>
                 {
                     props.isCounterButtonAvailable && <Button title='COUNTER' onClickHandler={props.showCounterPanel}/>
